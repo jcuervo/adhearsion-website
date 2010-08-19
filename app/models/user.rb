@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    %w[jicksta jsgoecke].include? login
+    %w[jicksta jsgoecke bklang].include? login
   end
   
   def login=(value)

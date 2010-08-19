@@ -39,20 +39,12 @@ class PageController < ApplicationController
     @title = "Download Adhearsion"
   end
   
-  def examples
-    @title = "Examples"
-  end
-  
   def faq
     @title = "Frequently Asked Questions"
   end
   
   def irc
     @title = "IRC Chatroom"
-  end
-  
-  def roadmap
-    @title = "Roadmap"
   end
   
   def screencasts
