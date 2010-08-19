@@ -47,10 +47,6 @@ class PageController < ApplicationController
     @title = "IRC Chatroom"
   end
   
-  def roadmap
-    @title = "Roadmap"
-  end
-  
   def screencasts
     @title = "Screencasts"
   end
