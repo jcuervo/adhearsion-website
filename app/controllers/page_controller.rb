@@ -38,6 +38,10 @@ class PageController < ApplicationController
   def download
     @title = "Download Adhearsion"
   end
+
+  def examples
+    @title = "Examples"
+  end
   
   def faq
     @title = "Frequently Asked Questions"
