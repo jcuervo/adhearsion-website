@@ -13,7 +13,7 @@
 <div id="homepage-news">
 <% for post in @blog_posts %>
   <div class="blog-post">
-    <p><a href="<%= post[:url] %>"><span class="title"><%= h post[:title] %></span> <span class="homepage-news-date"><%= post[:date].strftime('%Y-%m-%d %H:%M:%S') %></span></a></p>
+    <p><a href="<%= post[:url] %>"><span class="title"><%= h post[:title] %></span><br/><span class="homepage-news-date"><%= post[:date].strftime('%Y-%m-%d %H:%M:%S') %></span></a></p>
   </div>
 <% end %>
 </div>
