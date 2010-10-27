@@ -1,25 +1,8 @@
-<h1>Getting Started</h1>
-
-<p>We'll go into these steps in more detail but, at a high level, this is all that is required to use the sandbox:</p>
-
-<ul>
-  <li>Sign up for a sandbox account on this webpage</li>
-  <li>Install Adhearsion</li>
-  <li>Create a new Adhearsion application</li>
-  <li>Enable the <kbd>sandbox</kbd> component with your new application</li>
-  <li>Configure it with the username and password you used for your sandbox account</li>
-  <li>Start your application</li>
-  <li>Use a Voice over IP softphone to call your unique VoIP extension</li>
-</ul>
-
-<p>Firstly, if you don't have an account yet, sign up for one with the form on this page. The rest of the instructions assume you already have an account.</p>
-
-<h2>Installing Ruby, RubyGems and Adhearsion</h2>
-
+<%
+ahn_install_instructions =<<END
 <p>Installing Adhearsion is very simple on all platforms. The Ruby language has an official package manager named RubyGems which conveniently streamlines the installation of third-party software. Once you install Ruby and RubyGems, we'll use RubyGems to install Adhearsion.</p>
 
 <p>Choose one of the operating systems below for installation instructions.</p>
-
 
 <div id="installation-accordion">
 
@@ -55,36 +38,36 @@
 <h3 class="installation-instruction-toggler">Linux/BSD</h3>
 
 <div id="linux-installation" class="installation-instructions">
-  
+
   <p>On Linux it's best to use your distro's package manager to install Ruby and RubyGems, then have RubyGems update itself.</p>
 
   <p>On Debian and Ubuntu you may install Ruby and RubyGems by doing</p>
-  
+
 <pre>sudo apt-get install -y ruby1.8-dev rubygems1.8 \
   irb1.8 libsqlite3-ruby1.8</pre>
-  
+
   <p>On the Red Hat variants such as RHEL, Fedora, and CentOS, run the following command:</p>
   <pre>sudo yum install -y ruby ruby-rdoc ruby-irb \
   ruby-sqlite3 </pre>
-  
+
   <h4>Updating RubyGems</h4>
-  
+
   <p>Before we install any gems with RubyGems, let's make sure we're using the latest version. Upgrade RubyGems by running the following command.</p>
 
   <pre>sudo gem update --system</pre>
-  
+
   <p>Now, we'll use the <kbd>gem</kbd> command to install Adhearsion:</p>
 
   <pre>sudo gem install adhearsion</pre>
 
   <p>This will automatically add the <kbd>ahn</kbd> command to your system, allowing you to create and start applications in the following step.</p>
-  
+
 </div>
 
 <h3 class="installation-instruction-toggler">Microsoft Windows</h3>
 
 <div id="windows-installation" class="installation-instructions">
-  
+
   <p>On Microsoft Windows you may install Ruby and RubyGems by doing:</p>
 
   <p>1. Download and install the Ruby on Windows <a href="http://www.ruby-lang.org/en/downloads/" target="_blank">One-Click Installer</a> (includes Ruby Gems)</p>
@@ -93,7 +76,7 @@
      <p><pre>gem install adhearsion</pre></p>
 
   <p><i>Note: Currently Adhearsion does not work as a Windows Service and therefore will only run interactively on Windows. It is on the roadmap to support a Windows Service in the near future.</i></p>
-  
+
 </div>
 
 </div>
@@ -108,14 +91,79 @@ $("#installation-accordion").accordion({
 </script>
 
 <p>For more ways to install Adhearsion (including how to get the latest-and-greatest code) see the <a href="/download" target="_blank">Download page</a>.</p>
+END
 
-<h2>Creating and running your first application</h2>
+%>
+
+<h1>Getting Started</h1>
+<!--
+<p>There are two primary ways to get started using Adhearsion:</p>
+
+<ul>
+  <li><a href="#asterisk">Using Asterisk on your own server</a></li>
+  <li><a href="#hosted">Using Adhearsion with a hosted service</a></li>
+</ul>
+-->
+<a name="asterisk"><h2>Using Adhearsion with Asterisk</h2></a>
+<p>These are the high-level steps for getting started with Adhearsion.  Click to jump to more detail on each topic:</p>
+<ul>
+  <li>Install Asterisk</li>
+  <li><a href="#asterisk-adhearsion-install">Install Ruby, RubyGems and Adhearsion</a></li>
+  <li><a href="#asterisk-new-ahn-app">Create a new Adhearsion application</a></li>
+  <li><a href="#asterisk-configure-ahn">Optional: Configure your new application for AMI</a></li>
+  <li><a href="#asterisk-dialplan.rb">Add stuff to dialplan.rb</a></li>
+  <li><a href="#asterisk-start-ahn">Start your application</a></li>
+  <li>Call your application!</li>
+</ul>
+
+<!--
+<a name="asterisk-install"><h2>Installing Asterisk</h2></a>
+<p>Most modern Linux distributions ship with perfectly good Asterisk packages:
+</p>
+
+<div id="asterisk-accordion">
+
+<h3 class="installation-instruction-toggler">Debian/Ubuntu</h3>
+<div id="debian-installation" class="installation-instructions">
+  <p>Stuff!</p>
+</div>
+
+<h3 class="installation-instruction-toggler">RedHat Enterprise/CentOS</h3>
+<div id="redhat-installation" class="installation-instructions">
+  <p>Stuff!</p>
+</div>
+
+<h3 class="installation-instruction-toggler">RedHat Enterprise/CentOS</h3>
+<div id="redhat-installation" class="installation-instructions">
+  <p>Stuff!</p>
+</div>
+
+</div>
+<script type="text/javascript">
+$("#asterisk-accordion").accordion({
+  alwaysOpen: false,
+  header: "h3",
+  active: true,
+  autoHeight: false
+});
+</script>
+-->
+
+<a name="asterisk-adhearsion-install">
+  <h2>Installing Ruby, RubyGems and Adhearsion</h2>
+</a>
+
+<%= ahn_install_instructions %>
+
+
+<a name="asterisk-new-ahn-app"><h2>Creating and running your first application</h2></a>
 
 <p>Test that you have Adhearsion installed by running the following command:</p>
 
 <pre>ahn --help</pre>
 
 <p>This should print out the usage of the <kbd>ahn</kbd> command. This <kbd>ahn</kbd> command is the main way you create and run applications with Adhearsion.</p>
+
 
 <h3>Creating an application</h3>
 
@@ -125,39 +173,10 @@ $("#installation-accordion").accordion({
 
 <p>You will see the program print out a list of files it just created in the <kbd>my_first_app</kbd> folder.</p>
 
-<h3>Enabling and configuring the <kbd>sandbox</kbd> component</h3>
 
-<p>Next, we need to enable the sandbox component so that your application can accept calls when you call in with a PC phone. To do this, enter the following commands:</p>
-
-<pre>cd my_first_app
-ahn enable component sandbox</pre>
-
-<p>Components are like plugins to an Adhearsion application. They extend your application with some unit of functionality that is unique only to the individual applications that have installed and enabled it. New Adhearsion applications come with a number of components enabled and disabled. You can view the pre-installed components by looking at the folders in the <kbd>components</kbd> directory. The <kbd>components/disabled</kbd> folder contains components which are presently disabled. You can disable the component later by doing</p>
-
-<pre>ahn disable component sandbox</pre>
-
-<p>or by moving the <kbd>components/sandbox</kbd> folder into the <kbd>components/disabled</kbd> folder.</p>
-
-<p>Now that the <kbd>sandbox</kbd> component is enabled, we need to configure it with your username and password. Doing this is very easy. Open the <kbd>components/sandbox/sandbox.yml</kbd> file in your favorite text editor. It will look like the following:</p>
-
-<pre>username: lordxenu
-password: iamthegalacticrooolah</pre>
-
-<p>Replace <kbd>user123</kbd> and <kbd>pass123</kbd> with the username and password you gave the signup form on this page. Adhearsion uses the very clean and readable YAML markup language (file extension <kbd>.yml</kbd>) for virtually all of its configuration.</p>
-
-<h3>Starting your application</h3>
-
-<p>Once you've done this, you're ready to start your application! Next, change back into the <kbd>my_first_app</kbd> directory and start it by doing</p>
-
-<pre>ahn start .</pre>
-
-<p>Where "." simply means the current directory. Alternatively, you can do</p>
-
-<pre>ahn -</pre>
-
-<p>which is a shortcut for starting the application in the current directory.</p>
-
-<p>You should see Adhearsion output text as it starts the application.</p>
+<a name="asterisk-dialplan.rb">
+  <h2>Add stuff to dialplan.rb</h2>
+</a>
 
 <p>Next, open the <kbd>dialplan.rb</kbd> file in your favorite text editor. This file contains the logic that is executed when you call into it. You should see something like the following:</p>
 
@@ -177,88 +196,22 @@ password: iamthegalacticrooolah</pre>
 
 <p><em>Note: If you would like to access additional sound files beyond 'hello-world' you have a full listing of available sound files <a href="http://docs.adhearsion.com/display/adhearsion/Available+Sound+Files" target="_blank">here</a>.</em></p>
 
+<a name="asterisk-start-ahn">
+  <h2>Starting your application</h2>
+</a>
 
+<p>Once you've done this, you're ready to start your application! Next, change back into the <kbd>my_first_app</kbd> directory and start it by doing</p>
 
-<h2>Calling into your application.</h2>
+<pre>ahn start .</pre>
 
-<p>Now that you've written an application, let's test it! There are four ways you can do this:</p>
+<p>Where "." simply means the current directory. Alternatively, you can do</p>
 
-<ul>
-  <li>With your normal cell or landline phone</li>
-  <!-- <li>Using Skype</li> -->
-  <li>Using an in-browser phone</li>
-  <li>Using the SIP VoIP protocol with SIP software</li>
-</ul>
+<pre>ahn -</pre>
 
-<h3>Calling in with your cell or landline phone</h3>
+<p>which is a shortcut for starting the application in the current directory.</p>
 
-<img style="float:right;" src="/images/pstn-iphone.png" alt=""/>
+<p>You should see Adhearsion output text as it starts the application.</p>
 
-<p>For those that have never done telephony development before, calling in with an actual phone will feel most satisfying and exciting.</p>
-
-<p>The folks over at <a href="http://voxbone.com">Voxbone</a> have dedicated a public number for the sandbox into which anyone can dial. At the moment it supports only ten concurrent calls so it's possible that you'll get a busy signal when a lot of people are using it.</p>
-
-<p>When your Adhearsion application is running with the sandbox component enabled, call into the following number and enter your PIN.</p>
-
-<p><strong><big>+1 (213) 325-2621</big></strong></p>
-
-<% if logged_in? %>
-<p><strong>The PIN number for your "<%= current_user.login %>" account is <%= current_user.pin_number %>.</strong></p>
-<% else %>
-<p>To get your PIN number, <a href="/signup">create an account</a>. Your PIN number will be emailed to you and can be viewed on the <a href="/account">Manage Account</a> page when you're logged in.</p>
-<% end %>
-
-
-<!--
-<h3>Using Skype <em style="color: red; font-weight: bold">(BETA)</em></h3>
-
-<img src="/images/skype-sandbox.png" style="float:right; margin: -5px -28px -28px -10px" alt=""/>
-
-<p>Skype recently seeded out a new beta release of their <a href="http://share.skype.com/sites/en/2008/09/skype_for_asterisk_beta.html">Asterisk extension that enables Skype interoperability</a>. Tough we can't assure we'll have this forever, you can certainly use it to test your application using Skype's great softphone.</p>
-
-<p><em>Note: The Skype for Asterisk channel driver is still beta software is sometimes must be disabled because it crashes Asterisk altogether. If the Skype gateway is down, this is probably why.</em></p>
-
-<p>For Skype, we have to handle calls to the sandbox a bit differently. Because we can't take over your Skype account or register arbitrary accounts for you, you will have to call into <em>our</em> sandbox's Skype account and our server will have to convert the incoming call's Skype username (your username) to your respective sandbox username so it can find your running Adhearsion app. For this reason, you'll have to <strong>enter your Skype username on <a href="/account">the Manage Account</a> page</strong> if you already haven't.</p>
-
-<p>Therefore, the steps are:</p>
-
-<ul>
-  <li>Register a Skype account if you haven't already</li>
-  <li>Register a sandbox account and give it your Skype username</li>
-  <li>Run your sandbox-enabled Adhearsion app</li>
-  <li>Call into <kbd>sandbox.adhearsion.com</kbd></li>
-</ul>
--->
-
-
-<h3>Using an in-browser phone</h3>
-
-<p>Tim Panton of the <a href="http://phonefromhere.com">Phone From Here</a> project generously built a custom version of Phone From Here that will work with the Adhearsion sandbox.</p>
-<% if logged_in? %>
-<p>Normally you can find a Phone From Here phone on your <a href='/account'>Manage Account</a> page but, to make your life easier, you can activate one below.</p>
-<% else %>
-
-<p>After you create a sandbox account you can find a Phone From Here phone on your <a href='/account'>Manage Account</a> page but, if you already have an account, you can enter the username below.</p>
-<% end %>
-
-<%= phone_from_here %>
-
-<p>If you have any issues with Phone From Here, please <a href="http://getsatisfaction.com/phonefromhere">report them</a>.</p>
-
-
-
-
-<h3>Using the SIP VoIP protocol</h3>
-
-<img style="margin: -25px;float:right;" src="/images/gizmo-uri-field.png" alt=""/>
-
-<p>If you're most comfortable with using a good ol' SIP softphone or physical desktop phone with the sandbox, it's extremely easy to do. The only requirement is that the SIP implementation used conforms well enough and sends the SIP "To" header properly.</p>
-  
-<p>If you don't have a preferred SIP softphone, we recommend <a href="http://gizmoproject.com" target="_blank">Gizmo5</a>. Though Gizmo5 requires you to register a Gizmo account, it does this so it can more easily bypass firewall issues that typically plague SIP.</p>
-
-<p>To get up and running with Gizmo5, visit <a href="http://gizmoproject.com" target="_blank">their website</a> and follow their instructions.</p>
-
-<p>Now that you have your SIP phone ready, simply call <i><kbd>xyz</kbd></i><kbd>@sandbox.adhearsion.com</kbd>, replacing <i><kbd>xyz</kbd></i> with your sandbox account username. SIP URIs typically look like email addresses.</p>
 
 <h2>Conclusion</h2>
 
