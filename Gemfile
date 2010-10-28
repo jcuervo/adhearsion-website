@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 source "http://gemcutter.org"
-gem "rails", "= 2.2.2"
+gem "rails", "= 2.3.10"
 gem "rake"
 gem "test-spec"
 gem "rspec"
