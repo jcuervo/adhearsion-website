@@ -19,9 +19,8 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
 
   def check_uri
-    if /^www/.match(request.host)
-      redirect_to request.protocol + request.host_with_port[4..-1] + request.request_uri 
-    end
+    redirect_to request.protocol + request.host_with_port[4..-1] + request.request_uri if /^www/.match(request.host)
+    redirect_to "http://mojolingo.com/adhearsion-consulting.php" if /^\/consulting/.match(request.request_uri)
   end
   
   def load_blog_posts_from_aggregator
