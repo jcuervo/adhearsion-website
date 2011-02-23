@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   
   def load_blog_posts_from_aggregator
-    feed_url = "http://pipes.yahoo.com/pipes/pipe.run?_id=DkJE9pns3RGlyDwlBR50VA&_render=rss"
+    feed_url = "http://pipes.yahoo.com/pipes/pipe.run?_id=7d727342ec97cb855c218e5daba3843c&_render=rss"
     feed_content = open(feed_url).read
 
     parsed_feed = Hash.from_xml feed_content
