@@ -123,21 +123,6 @@
           });
         });
       </script>
-    
-      <h1>Account</h1>
-      <ul>
-        <li><a href="/login" id="login-link">Login</a>
-          <div id="login-dialog">
-            <%= render :partial => "sessions/login_form" %>
-            <script type="text/javascript">
-              $(function() {
-                $("#login-dialog input[type='submit']").hide();
-              });
-            </script>
-          </div>
-        </li>
-        <li><a href="/signup">Sign up</a></li>
-        <li><a href="/faq#why-have-accounts">What is this?</a></li>
       </ul>
     <% end %>
     
