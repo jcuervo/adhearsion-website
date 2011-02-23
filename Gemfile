@@ -10,3 +10,7 @@ gem "libxml-ruby"
 gem "syntax"
 gem "verhoeff"
 gem "aasm"
+
+group :development do
+  gem "sqlite3"
+end
