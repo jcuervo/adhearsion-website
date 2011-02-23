@@ -4,6 +4,8 @@
 class ApplicationController < ActionController::Base
   
   include AuthenticatedSystem
+
+  before_filter :check_uri
   
   helper :all # include all helpers, all the time
 
@@ -15,6 +17,12 @@ class ApplicationController < ActionController::Base
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
+
+  def check_uri
+    if /^www/.match(request.host)
+      redirect_to request.protocol + request.host_with_port[4..-1] + request.request_uri 
+    end
+  end
   
   def load_blog_posts_from_aggregator
     feed_url = "http://pipes.yahoo.com/pipes/pipe.run?_id=7d727342ec97cb855c218e5daba3843c&_render=rss"
