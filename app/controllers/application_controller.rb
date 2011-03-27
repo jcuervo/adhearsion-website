@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  include AuthenticatedSystem
-
   before_filter :check_uri
 
   helper :all # include all helpers, all the time

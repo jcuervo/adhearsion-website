@@ -1,13 +1,4 @@
 AdhearsionWebsite::Application.routes.draw do
-  match 'logout' => 'sessions#destroy', :as => :logout
-  match 'login' => 'sessions#new', :as => :login
-
-  resources :session
-
-  match 'api/username_from_md5/:identifier_hash' => "api#username_from_md5"
-  match 'api/github/post_receive' => "api#github_post_receive"
-  match 'api/sandbox_test' => "api#sandbox_test"
-
   match 'consulting' => redirect("http://mojolingo.com/adhearsion-consulting.php")
 
   match ":action" => "page", :as => :page

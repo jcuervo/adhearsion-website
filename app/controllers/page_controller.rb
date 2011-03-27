@@ -7,7 +7,6 @@ class PageController < ApplicationController
 
   def getting_started
     @title = "Getting Started"
-    @user = User.new
   end
 
   def testing

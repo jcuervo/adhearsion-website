@@ -84,41 +84,6 @@
           <li><a href="/irc">IRC Chatroom</a></li>
           <li><a href="http://groups.google.com/group/adhearsion">Mailing List &amp; Forum</a></li>
         </ul>
-
-        <% if logged_in? %>
-          <h1><%= current_user.login.capitalize %></h1>
-          <ul>
-            <li><a href="/account">Manage Account</a></li>
-            <li><a href="/logout">Log out</a></li>
-          </ul>
-        <% else %>
-          <script type="text/javascript">
-            // Make the Login link pop up a javascript login form.
-            $(function() {
-              $('#login-dialog').dialog({
-                autoOpen: false,
-                height: 230,
-                width: 200,
-                modal: true,
-                hide: 'clip',
-                resizable: false,
-                title: "Login",
-                buttons: {
-                  'Login': function() {
-                    $("#login-dialog input[type='submit']").click();
-                  },
-                  Cancel: function() {
-                    $(this).dialog('close');
-                  }
-                }
-              });
-              $('#login-link').click(function() {
-                $('#login-dialog').dialog("open");
-                return false;
-              });
-            });
-          </script>
-        <% end %>
       </div>
 
       <div class="main">
