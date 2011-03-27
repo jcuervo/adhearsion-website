@@ -19,10 +19,6 @@ module ApplicationHelper
     MESSAGE
   end
 
-  def auth_token
-    javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery?
-  end
-
   def phone_from_here
     if logged_in?
       url    = "http://api.phonefromhere.com/gateway/adhearsion.xsql?caller=#{current_user.login}"

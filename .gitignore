@@ -1,5 +1,7 @@
 .DS_Store
 config/database.yml
-log/*
 .bundle
 vendor/ruby
+db/*.sqlite3
+log/*.log
+tmp/
