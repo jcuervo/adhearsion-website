@@ -1,6 +1,5 @@
 .DS_Store
 config/database.yml
-config/confluence.yml
 log/*
 .bundle
-nbproject
+vendor/ruby
