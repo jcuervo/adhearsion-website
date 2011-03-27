@@ -1,7 +1,7 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  
-  def info(message, options={})
+
+  def info(message, options = {})
     options = {:width => "100%"}.merge options
     <<-MESSAGE
     <div class="info-box ui-state-highlight ui-corner-all" style="width: #{options[:width]}">
@@ -9,8 +9,8 @@ module ApplicationHelper
     </div>
     MESSAGE
   end
-  
-  def error_box(message, options={})
+
+  def error_box(message, options = {})
     options = {:width => "100%"}.merge options
     <<-MESSAGE
     <div class="info-box ui-state-error ui-corner-all" style="width: #{options[:width]}">
@@ -18,21 +18,20 @@ module ApplicationHelper
     </div>
     MESSAGE
   end
-  
+
   def auth_token
     javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery?
   end
-  
+
   def phone_from_here
     if logged_in?
-      
       url    = "http://api.phonefromhere.com/gateway/adhearsion.xsql?caller=#{current_user.login}"
       div_id = "pfh_#{randomness}"
-      
+
       <<-HTML
         <div id="#{div_id}"></div>
         <script type="text/javascript">
-          
+
           function initialize_phone() {
             $("##{div_id}").empty().append('\
               <iframe src="#{url}" height="265" width="297" scrolling="no">\
@@ -41,7 +40,7 @@ module ApplicationHelper
               <p><a href="#" onclick="javascript:reset_preview(); return false;">Close Phone</a></p>'
             );
           }
-          
+
           function reset_preview() {
             $("##{div_id}").empty().append('\
               <p>Click the following image to initialize Phone From Here.</p>\
@@ -51,9 +50,9 @@ module ApplicationHelper
               <p>Note: You will need to have Java installed.</p>'
             );
           }
-          
+
           reset_preview();
-          
+
         </script>
       HTML
     else
@@ -66,11 +65,11 @@ module ApplicationHelper
       HTML
     end
   end
-  
+
   protected
-  
-  def randomness
-    (rand * 1_000_000).to_i
-  end
-  
+
+    def randomness
+      (rand * 1_000_000).to_i
+    end
+
 end

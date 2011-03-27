@@ -1,33 +1,33 @@
 # -*- coding: utf-8 -*-
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 # Be sure to include AuthenticatedTestHelper in spec/spec_helper.rb instead.
 # Then, you can remove it from this and the functional test.
 include AuthenticatedTestHelper
 
 describe User do
-  
+
   fixtures :users
 
   describe "compatibility with the old SandboxUser class" do
-    
+
     it "should fall back onto the old authentication system if no salt is set" do
       krusty = User.authenticate("krusty", "roflcopter")
       krusty.should_not be_nil
       krusty.should be_valid
     end
-    
+
     it "should properly create an identifier_hash" do
       jay = User.create :name     => "Jay",
                         :email    => "alice@wonderland.com",
                         :password => "roflcopter",
                         :password_confirmation => "roflcopter",
                         :login    => "jicksta"
-      
+
       jay.should be_valid
       jay.identifier_hash.should == "de3bedfab34f0973a4f7022a922a9982" # Calculated with the old system
     end
-    
+
     it "should use the new system when changing a password" do
       krusty = User.find_by_login("krusty")
       krusty.salt.should be_nil
@@ -37,7 +37,7 @@ describe User do
       krusty.salt.should_not be_nil
       krusty.crypted_password.should_not eql(old_crypted_password)
     end
-    
+
   end
 
   describe 'being created' do
@@ -164,6 +164,7 @@ describe User do
       end
     end
   end
+
   describe "disallows illegitimate names" do
     ["tab\t", "newline\n", '',
      '1234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_',

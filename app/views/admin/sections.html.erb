@@ -1,4 +1,3 @@
-
 <h2>Manage Example Sections</h2>
 <script type="text/javascript">
   $(document).ready(function() {
@@ -8,12 +7,11 @@
       axis: "y",
       containment: "parent",
       update: function(event, ui) {
-        url = "<%= url_for(:controller => 'admin', :action => 'reorder_sections') %>"
         order = $(ui.item).parent(".sortable").sortable("toArray").map(function(section_id) {
           return parseInt(section_id.replace("example_section_", ""));
         }).join(",");
-        
-        $.post(url, {order: order}, function(data, textStatus) {
+
+        $.post("<%= url_for(:controller => 'admin', :action => 'reorder_sections') %>", {order: order}, function(data, textStatus) {
           alert("Done! " + textStatus)
         }, 'json');
       }
@@ -28,18 +26,14 @@
 </p>
 
 <ul class="sortable ui-sortable">
-<% for example_section in @example_sections %>
+  <% @example_sections.each do |example_section| %>
+    <li class="ui-state-default" id="example_section_<%= example_section.id %>">
+      <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
 
-  <li class="ui-state-default" id="example_section_<%= example_section.id %>">
-    
-    <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
-    
-    <%= delete_icon example_section_url(example_section) %>
-    <%= edit_icon edit_example_section_url(example_section) %>
-    
-    <p><%= h example_section.title %></p>
-    
-  </li>
-  
-<% end %>
+      <%= delete_icon example_section_url(example_section) %>
+      <%= edit_icon edit_example_section_url(example_section) %>
+
+      <p><%= h example_section.title %></p>
+    </li>
+  <% end %>
 </ul>

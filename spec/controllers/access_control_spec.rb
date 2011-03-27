@@ -1,5 +1,6 @@
-require File.dirname(__FILE__) + '/../spec_helper'
-  # Be sure to include AuthenticatedTestHelper in spec/spec_helper.rb instead
+require 'spec_helper'
+
+# Be sure to include AuthenticatedTestHelper in spec/spec_helper.rb instead
 # Then, you can remove it from this and the units test.
 include AuthenticatedTestHelper
 
@@ -8,6 +9,7 @@ include AuthenticatedTestHelper
 #
 class AccessControlTestController < ApplicationController
   before_filter :login_required, :only => :login_is_required
+
   def login_is_required
     respond_to do |format|
       @foo = { 'success' => params[:format]||'no fmt given'}
@@ -16,6 +18,7 @@ class AccessControlTestController < ApplicationController
       format.json do render :json => @foo, :status => :ok  end
     end
   end
+
   def login_not_required
     respond_to do |format|
       @foo = { 'success' => params[:format]||'no fmt given'}
@@ -42,7 +45,7 @@ ACCESS_CONTROL_IS_LOGIN_REQD = [
   :login_is_required,]
 
 describe AccessControlTestController do
-  fixtures        :users
+  fixtures :users
   before do
     # is there a better way to do this?
     ActionController::Routing::Routes.add_route '/login_is_required',           :controller => 'access_control_test',   :action => 'login_is_required'
@@ -59,13 +62,11 @@ describe AccessControlTestController do
             get login_reqd_status.to_s, :format => format
           end
 
-          if ((login_reqd_status == :login_not_required) ||
-              (login_reqd_status == :login_is_required && logged_in_status == :i_am_logged_in))
+          if ((login_reqd_status == :login_not_required) || (login_reqd_status == :login_is_required && logged_in_status == :i_am_logged_in))
             it "succeeds" do
               response.should have_text(success_text)
               response.code.to_s.should == '200'
             end
-
           elsif (login_reqd_status == :login_is_required && logged_in_status == :i_am_not_logged_in)
             if ['html', ''].include? format
               it "redirects me to the log in page" do
@@ -77,7 +78,6 @@ describe AccessControlTestController do
                 response.code.to_s.should == '401'
               end
             end
-
           else
             warn "Oops no case for #{format} and #{logged_in_status.to_s.humanize} and #{login_reqd_status.to_s.humanize}"
           end

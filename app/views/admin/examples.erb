@@ -9,18 +9,13 @@
       containment: "parent",
       // connectWith: ["ul.sortable"], // Can't get the handler to work for some reason.
       update: function(event, ui) {
-        
         order = $(ui.item).parent(".sortable").sortable("toArray").map(function(section_id) {
           return parseInt(section_id.replace("example_", ""));
         }).join(",");
-        
-        
-        url = "<%= url_for(:controller => 'admin', :action => 'reorder_examples') %>"
-        
-        $.post(url, {order: order}, function(data, textStatus) {
+
+        $.post("<%= url_for(:controller => 'admin', :action => 'reorder_examples') %>", {order: order}, function(data, textStatus) {
           alert("Done! " + textStatus)
         }, 'json');
-        
       }
     });
     $("div.example_section").sortable({
@@ -39,27 +34,22 @@
   <% end %>
 </p>
 
-<% for section in @example_sections %>
+<% @example_sections.each do |section| %>
+  <div id="example_section_<%= section.id %>" class="example_section ui-sortable">
 
-<div id="example_section_<%= section.id %>" class="example_section ui-sortable">
-  
-  <h3 class="example_section_header"><%= h section.title %></h3>
+    <h3 class="example_section_header"><%= h section.title %></h3>
 
-  <ul class="sortable ui-sortable">
-  <% for example in section.examples %>
+    <ul class="sortable ui-sortable">
+      <% section.examples.each do |example| %>
+        <li class="ui-state-default" id="example_<%= example.id %>">
+          <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
 
-    <li class="ui-state-default" id="example_<%= example.id %>">
-    
-      <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
-      
-      <%= delete_icon example_url(example) %>
-      <%= edit_icon edit_example_url(example) %>
-             
-      <p><%= h example.title %></p>
-    
-    </li>
-  
-  <% end %>
-  </ul>
-</div>
+          <%= delete_icon example_url(example) %>
+          <%= edit_icon edit_example_url(example) %>
+
+          <p><%= h example.title %></p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>

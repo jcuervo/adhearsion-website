@@ -2,7 +2,6 @@ require 'digest/sha1'
 require 'md5'
 
 class User < ActiveRecord::Base
-  
   include Authentication
   include Authentication::ByPassword
   include Authentication::ByCookieToken
@@ -26,15 +25,14 @@ class User < ActiveRecord::Base
   before_create :reset_api_key
 
   attr_accessible :login, :email, :name, :password, :password_confirmation, :skype, :receive_emails
-  
+
   class << self
-    
     def authenticate(login, password)
       return nil if login.blank? || password.blank?
       u = find_in_state :first, :active, :conditions => {:login => login.downcase} # need to get the salt
       u && u.authenticated?(password) ? u : nil
     end
-    
+
     def id_from_pin_number(pin)
       pin = pin.to_s
       first_checksum = pin[-1].chr.to_i
@@ -45,10 +43,10 @@ class User < ActiveRecord::Base
          Verhoeff.checksum_digit_of("#{offset_id}#{first_checksum}") == second_checksum
         offset_id.to_i - 1337
       else
-        nil  
+        nil
       end
     end
-    
+
     def find_by_pin_number(pin)
       id = id_from_pin_number pin
       find(id) if id
@@ -58,7 +56,7 @@ class User < ActiveRecord::Base
   def admin?
     %w[jicksta jsgoecke bklang].include? login
   end
-  
+
   def login=(value)
     write_attribute :login, (value ? value.downcase : nil)
   end
@@ -75,24 +73,24 @@ class User < ActiveRecord::Base
       super
     end
   end
-  
+
   def pin_valid?(pin)
     pin == pin_number
   end
-  
+
   def pin_number
     offset_id = 1337 + id
     first  = Verhoeff.checksum_digit_of offset_id
     second = Verhoeff.checksum_digit_of "#{offset_id}#{first}"
     "#{second}#{offset_id.to_s.reverse}#{first}"
   end
-  
+
   def reset_api_key
     self.api_key = self.class.make_token
   end
 
   protected
-  
+
     def encrypt_password
       if salt.blank? && !new_record? && password
         self.salt = self.class.make_token
@@ -106,11 +104,10 @@ class User < ActiveRecord::Base
         self.identifier_hash  = MD5.md5("#{login}:#{password}").to_s
       end
     end
-    
+
     def make_activation_code
         self.deleted_at = nil
         self.activation_code = self.class.make_token
     end
-
 
 end

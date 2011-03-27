@@ -1,5 +1,4 @@
 module AdminHelper
-  
   def delete_icon(url)
     <<-JAVASCRIPT
     <a href="#" onclick="javascript:deleteListItem(this.parentNode, '#{url}');" title="Delete">
@@ -7,7 +6,7 @@ module AdminHelper
     </a>
     JAVASCRIPT
   end
-  
+
   def edit_icon(url)
     <<-JAVASCRIPT
       <a href="#{url}" title="Edit">
@@ -15,6 +14,4 @@ module AdminHelper
       </a>
     JAVASCRIPT
   end
-  
-  
 end
