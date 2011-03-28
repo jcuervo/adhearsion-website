@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <title>Adhearsion: <%= @title %></title>
+    <title>Adhearsion: <%= yield(:title) || '' %></title>
 
     <%= stylesheet_link_tag "default", "syntax", "theme/ui.all" %>
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -90,6 +90,7 @@
         <div class="padded">
           <%= info flash[:notice] if flash[:notice] %>
           <%= error_box flash[:error] if flash[:error] %>
+          <%= content_tag :h1, yield(:title), :class => 'title' if show_title? %>
           <%= yield %>
         </div>
       </div>
