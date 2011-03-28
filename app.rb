@@ -7,8 +7,11 @@ use Rack::Cache,
 
 Sinatra.register SinatraMore::MarkupPlugin
 
+app_start_time = Time.now
+
 before do
   cache_control :public, :must_revalidate, :max_age => 1.hour
+  last_modified app_start_time
 end
 
 get '/' do
@@ -16,7 +19,7 @@ get '/' do
     pub_date = DateTime.parse(feed_item["pubDate"]) rescue Time.now
     { :title => feed_item["title"], :date => pub_date, :url => feed_item["link"] }
   end
-  last_modified @blog_posts.first[:date]
+  last_modified @blog_posts.first[:date] if @blog_posts.first[:date] > app_start_time
   etag @blog_posts.first.hash
   haml :index
 end
