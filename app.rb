@@ -1,12 +1,23 @@
 require 'open-uri'
 
+use Rack::Cache,
+  :verbose     => true,
+  :metastore   => 'file:tmp/cache/rack/meta',
+  :entitystore => 'file:tmp/cache/rack/body'
+
 Sinatra.register SinatraMore::MarkupPlugin
+
+before do
+  cache_control :public, :must_revalidate, :max_age => 60
+end
 
 get '/' do
   @blog_posts = Hash.from_xml(open("http://pipes.yahoo.com/pipes/pipe.run?_id=7d727342ec97cb855c218e5daba3843c&_render=rss").read)["rss"]["channel"]["item"].to_a.map do |feed_item|
     pub_date = DateTime.parse(feed_item["pubDate"]) rescue Time.now
     { :title => feed_item["title"], :date => pub_date, :url => feed_item["link"] }
   end
+  last_modified @blog_posts.first[:date]
+  etag @blog_posts.first.hash
   erb :index
 end
 
