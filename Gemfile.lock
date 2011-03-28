@@ -2,6 +2,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     activesupport (3.0.5)
+    haml (3.0.25)
     i18n (0.5.0)
     rack (1.2.2)
     rack-cache (1.0)
@@ -22,6 +23,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  haml
   i18n
   rack-cache
   sinatra

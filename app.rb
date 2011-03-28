@@ -18,13 +18,17 @@ get '/' do
   end
   last_modified @blog_posts.first[:date]
   etag @blog_posts.first.hash
-  erb :index
+  haml :index
 end
 
-[:contact, :contributing, :download, :examples, :faq, :irc, :screencasts].each do |page|
+[:contact, :contributing, :download, :faq, :irc, :screencasts].each do |page|
   get "/#{page}" do
-    erb page
+    haml page
   end
+end
+
+get '/examples' do
+  erb :examples, :layout_engine => :haml
 end
 
 get '/consulting' do
