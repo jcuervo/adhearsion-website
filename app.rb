@@ -8,7 +8,7 @@ use Rack::Cache,
 Sinatra.register SinatraMore::MarkupPlugin
 
 before do
-  cache_control :public, :must_revalidate, :max_age => 60
+  cache_control :public, :must_revalidate, :max_age => 1.hour
 end
 
 get '/' do
