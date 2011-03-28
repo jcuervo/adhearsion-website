@@ -31,6 +31,14 @@ get '/consulting' do
   redirect 'http://mojolingo.com/adhearsion-consulting.php'
 end
 
+not_found do
+  redirect '/'
+end
+
+error do
+  redirect '/'
+end
+
 def title(page_title, show_title = true)
   content_for(:title) { page_title.to_s }
   @show_title = show_title
