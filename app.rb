@@ -24,14 +24,10 @@ get '/' do
   haml :index
 end
 
-[:contact, :contributing, :download, :faq, :irc, :screencasts].each do |page|
+[:contact, :contributing, :download, :faq, :irc, :screencasts, :examples].each do |page|
   get "/#{page}" do
     haml page
   end
-end
-
-get '/examples' do
-  erb :examples, :layout_engine => :haml
 end
 
 get '/consulting' do
