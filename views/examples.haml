@@ -71,8 +71,7 @@
         sign, Ruby will make that into a local variable and "shadow" anything else in a higher scope that may have that same name. Because the method
         %code extension
         is in a higher scope, the local variable will take precedence, but
-        = succeed "." do
-          %em only in the local scope
+        %em only in the local scope
         The
         %code player
         context has its own, separate scope and, therefore, the
@@ -82,7 +81,7 @@
       :coderay
         #!ruby
         adhearsion {
-          @extension = extension + 1
+          @extension += 1
           play @extension
           +player
         }
@@ -101,12 +100,10 @@
         desired_extension = input
       %p
         The example above shows a Ruby principle at work:
-        = succeed "." do
-          %em convention over configuration
+        %em convention over configuration
         All of
-        = succeed "'s" do
-          %a{:href => "http://api.adhearsion.com/Adhearsion/VoIP/Asterisk/Commands.html#input-instance_method"}
-            %code input
+        %a{:href => "http://api.adhearsion.com/Adhearsion/VoIP/Asterisk/Commands.html#input-instance_method"}
+          %code input
         parameters are optional. The code above simply receives any number of digits with no timeout until the user presses the "#" key. The result is then bound to the
         %code desired_extension
         variable with the delimiting "#" removed.
@@ -141,7 +138,7 @@
         method as follows:
       :coderay
         #!ruby
-        execute("Conference", "room/S")
+        execute "Conference", "room/S"
 
   .example
     %h3.example-name.ui-state-default.ui-corner-all
@@ -151,8 +148,7 @@
         The Adhearsion dialplan.rb mirrors the Asterisk concept of a context. Within the
         %a{:href => "http://www.voip-info.org/tiki-index.php?page=Asterisk%20config%20extensions.conf"} extensions.conf
         file of Asterisk you may have these
-        = succeed ":" do
-          %a{:href => "http://www.voip-info.org/wiki-Asterisk+Dialplan+Introduction"} contexts
+        %a{:href => "http://www.voip-info.org/wiki-Asterisk+Dialplan+Introduction"} contexts
       :coderay
         #!plaintext
         [from_dallas]
@@ -198,8 +194,7 @@
         The
         %a{:href => "http://api.adhearsion.com/Adhearsion/VoIP/Asterisk/Commands.html#menu-instance_method"} menu
         command solves the problem of building enormous input-fetching state machines in Ruby without first-class message passing facilities or an external DSL. In otherwords, build complex menus to collect actionable user input via
-        = succeed "." do
-          %a{:href => "http://en.wikipedia.org/wiki/Dtmf"} DTMF
+        %a{:href => "http://en.wikipedia.org/wiki/Dtmf"} DTMF
       %p Here is an example dialplan which uses the menu command effectively:
       :coderay_raw
         #!ruby
@@ -265,15 +260,13 @@
 
       %p
         Voip-Info.org has an extensive list of the available Asterisk commands
-        = succeed "." do
-          %a{:href => "http://www.voip-info.org/wiki-Asterisk+-+documentation+of+application+commands"} here
+        %a{:href => "http://www.voip-info.org/wiki-Asterisk+-+documentation+of+application+commands"} here
       %p
         %strong Note:
         Asterisk itself has no dialplan-level concept of arguments. The example above is equivalent to
         %code DISA(1234|disa_context)
         in
-        = succeed "." do
-          %code extensions.conf
+        %code extensions.conf
         When Asterisk runs the DISA command, it passes the arguments between the parenthesis as a
         %strong raw string
         and it's up to the application to parse it. For this reason, you may need to pass a String as the second argument to
@@ -307,11 +300,10 @@
         class Order < ActiveRecord::Base
         end
       %p As long as you have followed conventions, that is it really. Then you may reference the table rows as follows:
-      :coderay
+      :coderay_raw
         #!ruby
-        customers = Customer.find(:all)
-        customers.each do |customer|
-          puts customer.first_name + " " + customer.last_name
+        Customer.all.each do |customer|
+          puts "#{customer.first_name} #{customer.last_name}"
         end
   .example
     %h3.example-name.ui-state-default.ui-corner-all
@@ -321,8 +313,7 @@
         With Adhearsion it is easy to access an
         %a{:href => "http://en.wikipedia.org/wiki/RDBMS"} RDBMS
         either through Rails or directly with
-        = succeed "." do
-          %a{:href => "http://api.rubyonrails.org/classes/ActiveRecord/Base.html"} ActiveRecord
+        %a{:href => "http://api.rubyonrails.org/classes/ActiveRecord/Base.html"} ActiveRecord
         Once you have your models setup, you may fetch information in a database and then iterate over it in your dialplan.rb.
       %p
         In this example we will show pulling information from a database to build a
@@ -330,29 +321,26 @@
         audio file to playback to the caller.
       :coderay_raw
         #!ruby
-        # my_model.rb
+        # parking_lot.rb
         class ParkingLot < ActiveRecord::Base
         end
 
         # dialplan.rb
         parking_spaces_available {
-          message = "Welcome to the parking info service."
+          messages =
 
           # Fetch the parking lot details from the database
-          parking_lots = ParkingLot.find(:all)
+          parking_lots = ParkingLot.all
 
           # Then iterate over the results to build a menu
-          parking_lots.each do |parking_lot|
-            message = message + " " +
-                      parking_lot.name + " has " +
-                      parking_lot.spaces.to_s +
-                      "spaces available."
+          messages = ["Welcome to the parking info service."] + parking_lots.collect do |parking_lot|
+            "#{parking_lot.name} has #{parking_lot.spaces} spaces available."
           end
 
           # Then if you have Festival TTS installed you may
           # build your TTS file and play it back to the caller
           filename = "parking_spaces_available.ulaw"
-          system("echo #{message} | text2wave -o #{filename} -otype ulaw")
+          system "echo #{messages.join ' '} | text2wave -o #{filename} -otype ulaw"
           play filename
         }
   .example
@@ -362,7 +350,7 @@
       %p In this example we will show finding one record from the database and using information from that row.
       :coderay_raw
         #!ruby
-        # my_model.rb
+        # parking_lot.rb
         class ParkingLot < ActiveRecord::Base
         end
 
@@ -370,23 +358,22 @@
         parking_lot_menu {
           menu 'welcome', 'for-bush-st-press1', 'for-hyde-press2',
                :timeout => 8.seconds, :tries => 3 do |link|
-
             link.bush_st 1
             link.hyde_st 2
-         }
+          end
+        }
 
-         bush_st {
-           # Here you may see we find the parking lot name
-           # based on the column 'name'
-           parking_lot = ParkingLot.find(:first,
-                                         :conditions => { :name => "Bush St" })
+        bush_st {
+          # Here you may see we find the parking lot name
+          # based on the column 'name'
+          parking_lot = ParkingLot.where(:name => "Bush St").first
 
-           play "bush-st-has", parking_lot.spaces, "spaces-available"
-         }
+          play "bush-st-has", parking_lot.spaces, "spaces-available"
+        }
 
-         hyde_st {
-           # Do the same thing here
-         }
+        hyde_st {
+          # Do the same thing here
+        }
 
 %h2 Working with Components
 %p
@@ -406,23 +393,23 @@
       :coderay
         #!plaintext
         ahn create component my_shiny_new_component
+
       %p With this you get a directory and files as follows:
       :coderay_raw
         #!plaintext
-        # Directory
-        ~/ahn_project/components/my_shiny_new_component
+        ~/ahn_project/components/my_shiny_new_component/my_shiny_new_component.rb
+        ~/ahn_project/components/my_shiny_new_component/my_shiny_new_component.yml
 
-        # The files created are
-        ~/ahn_project/components/my_shiny_new_component.rb
-        ~/ahn_project/components/my_shiny_new_component.yml
       %p You may then disable the component as follows:
       :coderay
         #!plaintext
         ahn disable component my_shiny_new_component
+
       %p And enable as follows:
       :coderay
         #!plaintext
         ahn enable component my_shiny_new_component
+
   .example
     %h3.example-name.ui-state-default.ui-corner-all
       %a{:href => "#"} Adding a new dialplan method
@@ -432,12 +419,13 @@
         #!ruby
         # In your my_shiny_new_component.rb file
         methods_for :dialplan do
+          # Totally useless method to count to 10
           def count_to_ten
             cnt = 0
             while cnt < 11
               cnt += 1
             end
-            return cnt
+            cnt
           end
         end
 
@@ -455,7 +443,7 @@
         #!ruby
         methods_for :global do
           def open_door
-            RestClient.get("http://front-door/control/open")
+            RestClient.get "http://front-door/control/open"
           end
         end
       %p
@@ -480,17 +468,18 @@
         events.asterisk.manager_interface.each do |event|
 
           # I always downcase so I do not have to remember too much
-          case event.name.downcase
-          when "newstate"
+          case event.name.downcase.to_sym
+          when :newstate
             # If the call was answered
             if event.headers["State"] == "Up"
               # do something
             end
-          when "hangup"
+          when :hangup
             # do something
           end
 
         end
+
   .example
     %h3.example-name.ui-state-default.ui-corner-all
       %a{:href => "#"} Run code after Adhearsion fully initializes
@@ -569,7 +558,7 @@
       :coderay_raw
         #!ruby
         inbound {
-          dial "SIP/#{get_variable('destination')}"
+          dial "SIP/#{get_variable 'destination'}"
         }
 
 %h2 Using web services
@@ -584,12 +573,10 @@
     .content-html
       %p
         Adhearsion has a great RPC interface out of the box that may be accessed via
-        = succeed "." do
-          %a{:href => "http://en.wikipedia.org/wiki/Representational_State_Transfer"} REST
+        %a{:href => "http://en.wikipedia.org/wiki/Representational_State_Transfer"} REST
         You may then access Adhearsion objects and methods from virtually any modern lanugage. In this case we will show Ruby consuming the web services (keep in mind Adhearsion uses
-        = succeed "):" do
-          %a{:href => "http://en.wikipedia.org/wiki/Json"} JSON
-      :coderay
+        %a{:href => "http://en.wikipedia.org/wiki/Json"} JSON
+      :coderay_raw
         #!ruby
         require 'json'
         require 'rest_client'
@@ -604,7 +591,7 @@
             :path_nesting => "/"
           }
 
-          def initialize(options={})
+          def initialize(options = {})
             @options = DEFAULT_OPTIONS.merge options
 
             @path_nesting = @options.delete :path_nesting
@@ -622,26 +609,26 @@
 
         #Create our Adhearsion object connected to the RESTful API of Adhearsion
         Adhearsion = RESTfulAdhearsion.new(:host     => "localhost",
-                                           :port     => 5000,
-                                           :user     => "jicksta",
-                                           :password => "roflcopterz")
+                                              :port     => 5000,
+                                              :user     => "jicksta",
+                                              :password => "roflcopterz")
 
         # Then make a call to it to place a phone call
-        Adhearsion.originate { :channel  => "SIP/3000,
-                               :context  => "outbound",
-                               :priority => "1",
-                               :exten    => "1000",
-                               :async    => "true" }
+        Adhearsion.originate(:channel => "SIP/3000",
+                              :context  => "outbound",
+                              :priority => "1",
+                              :exten    => "1000",
+                              :async    => "true")
+
   .example
     %h3.example-name.ui-state-default.ui-corner-all
       %a{:href => "#"} Consuming the Yahoo Query Language
     .content-html
       %p
         Example consuming the
-        = succeed "." do
-          %a{:href => "http://developer.yahoo.com/yql/"} Yahoo Query Language
+        %a{:href => "http://developer.yahoo.com/yql/"} Yahoo Query Language
         The dialplan below will ask the user for their zipcode, fetch the weather based on zipcode and then play the temperature back to the user.
-      :coderay
+      :coderay_raw
         #!ruby
         sandbox {
 
@@ -652,10 +639,9 @@
                      :timeout => 10,
                      :retries => 3
 
-          yahoo_url = 'http://query.yahooapis.com/v1/public/yql?format=json&q='
-          query = "SELECT * FROM weather.forecast WHERE location = " + response
+          query = "SELECT * FROM weather.forecast WHERE location = #{response}"
 
-          url = URI.encode(yahoo_url + query)
+          url = URI.encode "http://query.yahooapis.com/v1/public/yql?format=json&q=#{query}"
 
           json_data = open(url).read
           weather_data = JSON.parse json_data
@@ -667,11 +653,9 @@
 %h2 Using Adhearsion with JRuby
 %p
   Adhearsion fully supports running on
-  = succeed "." do
-    %a{:href => "http://jruby.codehaus.org/"} JRuby
+  %a{:href => "http://jruby.codehaus.org/"} JRuby
   This section will show you how to run and leverage JRuby to get the most of of running on the
-  = succeed "." do
-    %a{:href => "http://en.wikipedia.org/wiki/Java_virtual_machine"} Java Virtual Machine
+  %a{:href => "http://en.wikipedia.org/wiki/Java_virtual_machine"} Java Virtual Machine
 .examples
   .example
     %h3.example-name.ui-state-default.ui-corner-all
@@ -693,8 +677,7 @@
       %p Example component for Adhearsion showing a browser-based click to call application. Also shows how to use the RESTful API of Adhearsion.
       %p
         You may access the component
-        = succeed "." do
-          %a{:href => "http://github.com/jsgoecke/restful_clicktocall"} here
+        %a{:href => "http://github.com/jsgoecke/restful_clicktocall"} here
   .example
     %h3.example-name.ui-state-default.ui-corner-all
       %a{:href => "#"} An Adhearsion Stress Tester
@@ -702,8 +685,7 @@
       %p The Call Tester is used to generate live inbound call load on an Asterisk or any other telephony system. The Call Tester also provides a facility to play DTMF tones at the beginning of a call in order to traverse an IVR menu and reach various inbound call routes. The intent is use this facility in both engineering QA as well as a tool for operations in the field to load test each and every Asterisk or voice platform implementation.
       %p
         You may download the component
-        = succeed "." do
-          %a{:href => "http://github.com/jsgoecke/call-tester"} here
+        %a{:href => "http://github.com/jsgoecke/call-tester"} here
   .example
     %h3.example-name.ui-state-default.ui-corner-all
       %a{:href => "#"} Web scraping - Ann Arbor Parking
@@ -711,8 +693,7 @@
       %p Provides an example Adhearsion component that exposes the Ann Arbor, MI parking lot space availability via an IVR. This example was inspired by the folks @ VoIP Tech Chat and their Perl example.
       %p
         You may download the component
-        = succeed "." do
-          %a{:href => "http://github.com/jsgoecke/annarbor_parking/"} here
+        %a{:href => "http://github.com/jsgoecke/annarbor_parking/"} here
   .example
     %h3.example-name.ui-state-default.ui-corner-all
       %a{:href => "#"} Phone Surveys
@@ -720,8 +701,8 @@
       %p Provides an example Adhearsion component that conducts call surveys. The component also provides a Rails GUI.
       %p
         You may download the component
-        = succeed "." do
-          %a{:href => "http://github.com/jsgoecke/surveys/"} here
+        %a{:href => "http://github.com/jsgoecke/surveys/"} here
+
 :javascript
   $(document).ready(function() {
     $(".examples").accordion({
@@ -731,4 +712,3 @@
       autoHeight: false
     });
   });
-
