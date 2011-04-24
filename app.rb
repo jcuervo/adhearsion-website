@@ -34,6 +34,10 @@ get '/consulting' do
   redirect 'http://mojolingo.com/adhearsion-consulting.php'
 end
 
+get '/api' do
+  redirect 'http://rubydoc.info/github/adhearsion/adhearsion'
+end
+
 not_found do
   redirect '/'
 end
