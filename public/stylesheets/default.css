@@ -346,3 +346,8 @@ table.schedule tr td {
 table.schedule tr:nth-child(even) td {
   background: #ddd;
 }
+
+img.ahnconfbanner {
+  width: 100%;
+  margin-bottom: 5px;
+}
