@@ -17,6 +17,9 @@ role :app, "adhearsion.com"
 set(:current_branch) { `git branch`.match(/\* (\S+)\s/m)[1] || raise("Couldn't determine current branch") }
 set :branch, defer { current_branch }
 
+default_run_options[:pty] = true
+ssh_options[:forward_agent] = true
+
 namespace :deploy do
   desc "A macro-task that updates the code and fixes the symlink."
   task :default do
