@@ -24,7 +24,7 @@ get '/' do
   haml :index
 end
 
-[:contact, :contributing, :download, :faq, :irc, :screencasts, :examples].each do |page|
+[:contact, :contributing, :download, :faq, :irc, :screencasts, :examples, :ahnconf2011].each do |page|
   get "/#{page}" do
     haml page
   end
