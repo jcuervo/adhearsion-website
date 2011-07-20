@@ -1,6 +1,3 @@
-$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
-require 'rvm/capistrano'
-
 require 'bundler/capistrano'
 require 'railsless-deploy'
 
@@ -12,13 +9,10 @@ set :scm, :git
 set :deploy_via, :export # :remote_cache
 set :use_sudo, false
 
-set :deploy_to, "/home/adhearsion/adhearsion-website"
-set :user, "deploy"
+set :deploy_to, "/vol/www/adhearsion.com"
+set :user, "root"
 
 role :app, "adhearsion.com"
-
-set :rvm_ruby_string, "ruby-1.9.2"
-set :rvm_type, :user
 
 set(:current_branch) { `git branch`.match(/\* (\S+)\s/m)[1] || raise("Couldn't determine current branch") }
 set :branch, defer { current_branch }
