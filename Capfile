@@ -4,7 +4,7 @@ require 'railsless-deploy'
 set :application, "adhearsion-website"
 
 default_run_options[:pty] = true
-set :repository, "https://github.com/adhearsion/adhearsion-website.git"
+set :repository, "git@github.com:adhearsion/adhearsion-website.git"
 set :scm, :git
 set :deploy_via, :export # :remote_cache
 set :use_sudo, false
