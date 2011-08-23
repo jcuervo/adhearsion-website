@@ -18,6 +18,80 @@
 
 %h2 What's happening?
 
+%div{:class => 'overlay', :id => 'presentation-saturdaykeynote'}
+  %h3{:class => 'title'} Welcome to AdhearsionConf / Opening Keynote
+  %p{:class => 'presenter'} Ben Klang, Mojo Lingo
+  %p{:class => 'description'}
+  %p{:class => 'presenter-bio'}
+%div{:class => 'overlay', :id => 'presentation-ifbyphone'}
+  %h3{:class => 'title'} Developing Phone Survey Apps
+  %p{:class => 'presenter'} Stephen George
+  %p{:class => 'description'} What if you could run database-driven surveys that talked to your users? Ifbyphone was able to do just that with the help of Adhearsion and Mojo Lingo. Stephen George of Ifbyphone will discuss how easily Adhearsion lends itself to developing a robust survey phone application.
+  %p{:class => 'presenter-bio'} Stephen George is a Senior Software Developer at Ifbyphone in Chicago. When he's not making funky phone apps in Adhearsion, he's probably playing fetch with his chocolate labrador or playing air guitar with his headphones on.
+%div{:class => 'overlay', :id => 'presentation-shopify'}
+  %h3{:class => 'title'} Shopify <3 Adhearsion
+  %p{:class => 'presenter'} Daniel Beauchamp & Jonathan Rudenberg, Shopify
+  %p{:class => 'description'}
+    At Shopify, we have 16,000 stores and we handle all sales and support calls in house. We needed a fast, flexible and reliable way of handling these calls, and none of the applications we found met our needs. So we did what any good geek would do: we rolled our own.
+
+    Adhearsion made this possible. It simplified the onerous task of building an Asterisk-based app. Within less than a month, we had a functional app used in production by all of our agents, serving real customers. Along with showing callers, queue stats, and agent statuses, our "Q" app also displays information about customers and their shops; allowing agents to better serve them. Not bad for a team of two!
+    %br
+    Our presentation will start with a demo of "Q", and an overview of the Adhearsion components that it uses. We'll talk about the technologies that we also used, namely websockets, and the Sinatra and Batman.js frameworks (http://batmanjs.org/). Finally, we'll show the audience how easy it is to make a simple app using Adhearsion and Batman.js.
+  %p{:class => 'presenter-bio'}
+    Jonathan Rudenberg has always been fascinated with programming physical things. He has been using Adhearsion since 2008, and started learning Asterisk in 2006. Jonathan currently spends his time writing Internal Tools at Shopify.
+    %br
+    Daniel Beauchamp is an Internal Tools developer at Shopify, and makes sure that the team has amazing apps to use. "Q" is his personal favourite, because there's nothing cooler than instantly triggering javascript on screen when you pick up a phone.
+%div{:class => 'overlay', :id => 'presentation-hackfest'}
+  %h3{:class => 'title'} Adhearsion HackFest
+  %p{:class => 'presenter'} Everyone
+  %p{:class => 'description'} Come work on your favorite pet project, or just ask questions of the Adhearsion team.  This will be an open and unstructured time, perfect for experimentation.
+  %p{:class => 'presenter-bio'}
+%div{:class => 'overlay', :id => 'presentation-digium'}
+  %h3{:class => 'title'}
+  %p{:class => 'presenter'} Bryan Johns, Digium
+  %p{:class => 'description'} Asterisk 10 for Developers
+  %p{:class => 'presenter-bio'}
+    Bryan Johns is the Community Director for Digium, the Asterisk company. In this role, Bryan works globally to foster growth and adoption of these technologies amongst developers, partners and commercial entities. Bryan manages a community around Asterisk and its associated technologies that numbers greater than 75,000 members.
+    %br
+    Prior to joining Digium, Bryan spent nearly 20 years in and around the businesses of technology and telecommunications. He has started, grown and sold a handful of web application development and VoIP technology businesses and in 2004, found a home in the disruptive world of open standards and open source telecommunications platforms.
+    %br
+    Bryan is a native of Atlanta, Georgia where he works when he's not out and about evangelizing open source communications.
+%div{:class => 'overlay', :id => 'presentation-tropo'}
+  %h3{:class => 'title'} Telephony in the Cloud
+  %p{:class => 'presenter'} Jason Goecke, Voxeo Labs
+  %p{:class => 'description'}
+  %p{:class => 'presenter-bio'} Jason Goecke is Vice President of Innovation at Voxeo Labs.  Voxeo Labs are the makers of Tropo, one of the two telephony engines officially supported by the Adhearsion project.  Jason is the operationalizer, organizer, co-pilot, co-evangelist. He brings extensive experience in telecoms and enterprise call centers having been an original employee of the leading CTI company, Genesys , where he is an inventor on 10 patents. He enjoys his family, sailing and of course all that is technology.
+%div{:class => 'overlay', :id => 'presentation-dinner'}
+  %h3{:class => 'title'} Dinner
+  %p{:class => 'presenter'}
+  %p{:class => 'description'} We are working on plans for a dinner for all conference attendees.  Stay tuned!
+  %p{:class => 'presenter-bio'}
+%div{:class => 'overlay', :id => 'presentation-sundaykeynote'}
+  %h3{:class => 'title'} Sunday Keynote
+  %p{:class => 'presenter'} Jason Goecke, Voxeo Labs
+  %p{:class => 'description'}
+  %p{:class => 'presenter-bio'}
+%div{:class => 'overlay', :id => 'presentation-testingtelephony'}
+  %h3{:class => 'title'} Testing Telephony: It's Not All Terrible
+  %p{:class => 'presenter'} Ben Langfeld, Adhearsion Core Team
+  %p{:class => 'description'}
+  %p{:class => 'presenter-bio'} A recovering Physics graduate, Ben now spends approximately 25 hours per day slinging Ruby and is enjoying it a lot more than quantum field theory. Writing voice applications is a perfect fit for him, not least as a result of his addiction to talking. That this can be directed towards a robot can only make the world a better place.
+%div{:class => 'overlay', :id => 'presentation-weaponizing'}
+  %h3{:class => 'title'} Weaponizing the Cloud: Wardialing with Adhearsion
+  %p{:class => 'presenter'} Nathaniel Barnes, Department of Defense
+  %p{:class => 'description'} With every advance in technology, people have found a way to use it to the detriment of others, which is why we spend so much time and effort focused on securing our servers and our applications. Developments in telephony are no exception to this idiom, and we'll discuss how we've integrated some of these into a next generation, open source wardialer. We'll also discuss some of the technical challenges involved, the dangers associated with this approach, and how you can perform penetration testing for your organization using these tools.
+  %p{:class => 'presenter-bio'} Nathaniel Barnes is a long time developer, using different technologies and languages to adapt to the problem du jour. A Ruby convert, he's been an evangelist for open source in general and Ruby in particular in his chosen industry. He is currently a Department of Defense contractor and has been working in the intelligence community for nearly a decade.
+%div{:class => 'overlay', :id => 'presentation-lightning'}
+  %h3{:class => 'title'} Lightning Talks
+  %p{:class => 'presenter'}
+  %p{:class => 'description'} Got an idea?  Something to share, but not enough for a full session? This is your chance to show your stuff among your peers.  Signups will be open throughout the conference.
+  %p{:class => 'presenter-bio'} YOU!
+%div{:class => 'overlay', :id => 'presentation-roadmap'}
+  %h3{:class => 'title'} Adhearsion Roadmap: 2.0 and Beyond
+  %p{:class => 'presenter'} Ben Klang and Ben Langfeld
+  %p{:class => 'description'} We will discuss Adhearsions future as a project: upcoming features, organizational evolution and technology prognositcation.
+  %p{:class => 'presenter-bio'}
+
 %h3 Saturday 8th
 %table.schedule
   %thead
@@ -31,27 +105,27 @@
     %td
   %tr
     %td 9:45
-    %td Welcome & Keynote address
-    %td Ben Klang, Project lead & Founder, Mojo Lingo
+    %td{:class => 'presentation-link', :rel => '#presentation-saturdaykeynote'} Welcome & Keynote address
+    %td{:class => 'presentation-link', :rel => '#presentation-saturdaykeynote'} Ben Klang, Project lead & Founder, Mojo Lingo
   %tr
     %td 10:45
-    %td Developing Survey Phone Apps
-    %td Stephen George, IfByPhone
+    %td{:class => 'presentation-link', :rel => '#presentation-ifbyphone'} Developing Survey Phone Apps
+    %td{:class => 'presentation-link', :rel => '#presentation-ifbyphone'} Stephen George, IfByPhone
   %tr
     %td 11:30
     %td Short break
     %td
   %tr
     %td 11:45
-    %td Shopify <3 Adhearsion
-    %td Daniel Beauchamp & Jonathan Rudenberg, Shopify
+    %td{:class => 'presentation-link', :rel => '#presentation-shopify'} Shopify <3 Adhearsion
+    %td{:class => 'presentation-link', :rel => '#presentation-shopify'} Daniel Beauchamp & Jonathan Rudenberg, Shopify
   %tr
     %td 12:30
     %td Lunch
     %td
   %tr
     %td 14:00
-    %td Adhearsion Hackfest
+    %td{:class => 'presentation-link', :rel => '#presentation-hackfest'} Adhearsion Hackfest
     %td
   %tr
     %td 15:30
@@ -59,15 +133,15 @@
     %td
   %tr
     %td 15:45
-    %td Asterisk 10 for Developers
-    %td Bryan Johns, Digium
+    %td{:class => 'presentation-link', :rel => '#presentation-digium'} Asterisk 10 for Developers
+    %td{:class => 'presentation-link', :rel => '#presentation-digium'} Bryan Johns, Digium
   %tr
     %td 16:30
-    %td Telephony in the cloud
-    %td Jason Goecke, Voxeo Labs
+    %td{:class => 'presentation-link', :rel => '#presentation-tropo'} Telephony in the cloud
+    %td{:class => 'presentation-link', :rel => '#presentation-tropo'} Jason Goecke, Voxeo Labs
   %tr
     %td 21:00 - Late
-    %td Adhearsion Drinkup
+    %td{:class => 'presentation-link', :rel => '#presentation-dinner'} Adhearsion Drinkup
     %td TBD
 
 %h3 Sunday 9th
@@ -83,32 +157,32 @@
     %td
   %tr
     %td 9:45
-    %td Sunday Keynote
-    %td Jason Goecke
+    %td{:class => 'presentation-link', :rel => '#presentation-sundaykeynote'} Sunday Keynote
+    %td{:class => 'presentation-link', :rel => '#presentation-sundaykeynote'} Jason Goecke
   %tr
     %td 10:30
-    %td Testing Telephony - It's not all Terrible
-    %td Ben Langfeld
+    %td{:class => 'presentation-link', :rel => '#presentation-testingtelephony'} Testing Telephony - It's not all Terrible
+    %td{:class => 'presentation-link', :rel => '#presentation-testingtelephony'} Ben Langfeld
   %tr
     %td 11:15
     %td Short break
     %td
   %tr
     %td 11:30
-    %td Weaponizing the Cloud: Wardialing with Adhearsion
-    %td Nathaniel Barnes, Department of Defense
+    %td{:class => 'presentation-link', :rel => '#presentation-weaponizing'} Weaponizing the Cloud: Wardialing with Adhearsion
+    %td{:class => 'presentation-link', :rel => '#presentation-weaponizing'} Nathaniel Barnes, Department of Defense
   %tr
     %td 12:15
     %td Lunch
     %td
   %tr
     %td 13:45
-    %td Lightning talks
-    %td Everyone
+    %td{:class => 'presentation-link', :rel => '#presentation-lightning'} Lightning talks
+    %td{:class => 'presentation-link', :rel => '#presentation-lightning'} Everyone
   %tr
     %td 14:30
-    %td Roadmap discussion
-    %td Ben Klang, Ben Langfeld
+    %td{:class => 'presentation-link', :rel => '#presentation-roadmap'} Roadmap discussion
+    %td{:class => 'presentation-link', :rel => '#presentation-roadmap'} Ben Klang, Ben Langfeld
   %tr
     %td 15:15 - 15:30
     %td Goodbye
@@ -129,3 +203,6 @@
   %a{:href => 'https://reservations.ihotelier.com/crs/g_reservation.cfm?groupID=623765&hotelID=14474'} click here
   or use the group code 'Adhearsion' to join in the fun.
   %span{:style => 'font-weight:bold'} This group rate ends September 7th.  Book now!
+
+%script{:type => 'text/javascript'}
+  $("td[rel]").overlay();
