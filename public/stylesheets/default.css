@@ -361,9 +361,9 @@ img.ahnconfbanner {
   left: 27%;
   display:none;
   z-index:10000;
-  box-shadow: 20px 20px 20px #000;
-  -moz-box-shadow: 20px 20px 20px #000;
-  -webkit-box-shadow: 20px 20px 20px #000;
+  box-shadow: 0px 0px 40px #000;
+  -moz-box-shadow: 0px 0px 40px #000;
+  -webkit-box-shadow: 0px 0px 40px #000;
   padding: 25px;
 
   background-color: #fff;
@@ -371,6 +371,11 @@ img.ahnconfbanner {
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   -o-border-radius: 15px;
+}
+
+.presentation-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .overlay .title {
