@@ -5,3 +5,4 @@ vendor/ruby
 db/*.sqlite3
 log/*.log
 tmp/
+/nbproject/private/
