@@ -406,3 +406,9 @@ img.ahnconfbanner {
 	width:35px;
 }
 
+/* ahnconf2001 */
+div.sponsors li {
+  vertical-align: middle;
+  list-style: none;
+  text-align: center;
+}
