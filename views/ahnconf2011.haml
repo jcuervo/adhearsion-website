@@ -91,6 +91,10 @@
   %p{:class => 'presenter'} Ben Klang and Ben Langfeld
   %p{:class => 'description'} We will discuss Adhearsions future as a project: upcoming features, organizational evolution and technology prognostication.
   %p{:class => 'presenter-bio'}
+%div{:class => 'overlay', :id => 'venue-map'}
+  %h3{:class => 'title'} Map
+  %div{:class => 'map', :align => 'center'} 
+    <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?saddr=Next+Space+Coworking+San+Francisco&amp;daddr=114+Powell+Street,+San+Francisco,+CA+94102+(Hotel+Union+Square)&amp;hl=en&amp;sll=37.787369,-122.404025&amp;sspn=0.00942,0.012993&amp;geocode=FdScQAIdi060-CEbvIzsPIidGg%3BFaqQQAIdAzW0-Ckf2ThQj4CFgDGGVQsRNlqsdA&amp;vpsrc=0&amp;dirflg=w&amp;mra=ltm&amp;t=m&amp;ie=UTF8&amp;z=15&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com/maps?saddr=Next+Space+Coworking+San+Francisco&amp;daddr=114+Powell+Street,+San+Francisco,+CA+94102+(Hotel+Union+Square)&amp;hl=en&amp;sll=37.787369,-122.404025&amp;sspn=0.00942,0.012993&amp;geocode=FdScQAIdi060-CEbvIzsPIidGg%3BFaqQQAIdAzW0-Ckf2ThQj4CFgDGGVQsRNlqsdA&amp;vpsrc=0&amp;dirflg=w&amp;mra=ltm&amp;t=m&amp;ie=UTF8&amp;z=15&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
 
 %h3 Saturday 8th
 %table.schedule
@@ -188,8 +192,7 @@
     %td Goodbye
     %td Ben Klang
 
-%h2
-  %a{:name => 'register'} How do I register?
+%h2 How do I register?
 %p
   Just
   %a{:href => 'http://www.eventbrite.com/event/1762530777'} click here
@@ -197,12 +200,12 @@
 
 %h2 Where will I stay?
 %p
-  We've got you covered. The awesome folks at Voxeo Labs have secured a discounted rate at
-  %a{:href => 'http://hotelunionsquare.com'} Hotel Union Square
-  for those lucky few attendees who manage to get in quick. Just
-  %a{:href => 'https://reservations.ihotelier.com/crs/g_reservation.cfm?groupID=623765&hotelID=14474'} click here
-  or use the group code 'Adhearsion' to join in the fun.
-  %span{:style => 'font-weight:bold'} This group rate ends September 7th.  Book now!
+  Many conference attendees will be staying at the
+  %a{:href => 'http://www.hotelunionsquare.com'} Hotel Union Square
+  \. It's a
+  %span{:class => 'presentation-link', :style => 'font-weight:bold', :rel => '#venue-map'} short walk
+  away from our conference venue and across from San Francisco's famous Union Square.  Our special conference rate has expired and rooms are filling up so get your room soon!
 
 %script{:type => 'text/javascript'}
   $("td[rel]").overlay();
+  $("span[rel]").overlay();
